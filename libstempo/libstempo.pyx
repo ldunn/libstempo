@@ -676,6 +676,7 @@ cdef class tempopulsar:
             MAX_OBSN = MAX_OBSN_VAL if maxobs is None else maxobs 
 
         self.psr = <pulsar *>stdlib.malloc(sizeof(pulsar)*MAX_PSR)
+        memset(<pulsar *>self.psr, 0, sizeof(pulsar)*MAX_PSR) # Initialise memory to try and prevent weird crashes
         initialise(self.psr,1)          # 1 for no warnings
 
         # read par and tim file
